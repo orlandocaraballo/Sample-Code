@@ -1,0 +1,129 @@
+<% content_for :body_class do %>analytics<% end %>
+<% content_for :section_header do %>How Your Site is Performing<% end %>
+<% content_for :title do %>How Your Site is Performing<% end %>
+
+<form method="GET" action="/dashboard" class="time_travel">
+	<select name="time_travel">
+		<option value="week"<%=raw ' selected="selected"' if @time_travel == 'week' %>>Past Week</option>
+		<option value="month"<%=raw ' selected="selected"' if @time_travel == 'month' %>>Past Month</option>
+	</select>
+</form>
+
+<div id="main_content">
+	<section id="performance">
+
+		<div id="performance_chart_container">
+			<h4>Unique Visits</h4>
+			<div id="performance_chart"></div>
+		</div>
+	</section>
+
+	<section id="statistics">
+		<span class="stat">
+			<strong>
+				<%= number_with_delimiter @analytics.total_views %>
+			</strong>
+			Total Views
+		</span>
+		<span class="stat">
+			<!-- Time formate should be mm:ss -->
+			<strong>
+				<%= @analytics.avg_time_on_site.to_f.divmod(60)[0] %>:<%= "%02d" % @analytics.avg_time_on_site.to_f.divmod(60)[1].to_i %>
+			</strong>
+			Average Time on Site
+		</span>
+		<span class="stat">
+			<strong>
+			  <%= number_to_percentage @analytics.new_visitors, { :precision => 0 } %>
+			</strong>
+			New Visitors
+		</span>
+	</section>
+
+	<section class="references references_left">
+		<dl>
+			<dt>Sources</dt>
+			<% @analytics.sources.each do |v| %>
+				<dd>
+					<%= v[:source] %>
+					<strong><%= v[:visits] %></strong>
+				</dd>
+			<% end %>
+		</dl>
+	</section>
+
+	<section class="references references_right">
+		<dl>
+			<dt>Keywords</dt>
+			<% @analytics.keywords.each do |v| %>
+				<dd>
+					<%= v[:keyword] %>
+					<strong><%= v[:visits] %></strong>
+				</dd>
+			<% end %>
+		</dl>
+	</section>
+</div>
+	
+	
+
+<%= render :partial => "shared/javascript_embed/intercom" %>
+
+<% content_for :head_js do %>
+	<script type="text/javascript">
+		google.load("visualization", "1", {packages:["corechart"]});
+		google.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Date');
+			data.addColumn('number', 'Views');
+			data.addRows(<%= @analytics.deep_dive.count %>);
+
+			<% @analytics.deep_dive.each_with_index do |v, i| %>
+				data.setValue(<%= i %>, 0, '<%= v[:month].to_s + '/' + v[:day].to_s  %>');
+				data.setValue(<%= i %>, 1, <%= v[:visits]  %>);
+			<% end %>
+
+			var chart = new google.visualization.LineChart(document.getElementById('performance_chart'));
+			chart.draw(data, {
+				width: 790,
+				height: 260,
+				title: '',
+				colors: [ 'ff7e39' ],
+				lineWidth: 3,
+				legend: 'none',
+				backgroundColor: {
+					stroke: '#fff',
+					strokeWidth: 0
+				},
+				chartArea: {
+					height: 190,
+					width: 710
+				},
+				vAxis: {
+					baseline: 0,
+					baselineColor: '#c8c8c8',
+					textStyle: {
+						color: '#999999',
+						fontSize: 11
+					},
+					titleTextStyle: {
+						color: '#999999',
+						fontSize: 12
+					}
+				},
+				hAxis: {
+					textStyle: {
+						color: '#999999',
+						fontSize: 10
+					}
+				},
+				tooltipTextStyle: {
+					color: '#999999',
+					fontSize: 10
+				}
+			});
+		}
+	</script>
+<% end %>
