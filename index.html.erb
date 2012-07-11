@@ -2,12 +2,12 @@
 <% content_for :section_header do %>How Your Site is Performing<% end %>
 <% content_for :title do %>How Your Site is Performing<% end %>
 
-<form method="GET" action="/dashboard" class="time_travel">
+<% form_tag "/dashboard", :class => "time_travel", :method => "GET" %>
 	<select name="time_travel">
 		<option value="week"<%=raw ' selected="selected"' if @time_travel == 'week' %>>Past Week</option>
 		<option value="month"<%=raw ' selected="selected"' if @time_travel == 'month' %>>Past Month</option>
 	</select>
-</form>
+<% end %>
 
 <div id="main_content">
 	<section id="performance">
