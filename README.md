@@ -10,7 +10,7 @@ The following files are included:
 
 Javascript/Coffescript
 ----------------------
-- clipmarklet-browser.js -> the code that runs in the browser and remotely calls the clipmarklet-initialize coffeescript
+- clipmarklet-browser.js - the code that runs in the browser and remotely calls the clipmarklet-initialize coffeescript
 - clipmarklet-initialize.js.coffee.erb -> the code that generates the bookmarklet html and styles it
 - clipmarklet.js.coffee -> the script that establishes some utility methods to call on clipmarklet related pages
 
