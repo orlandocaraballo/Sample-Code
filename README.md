@@ -11,8 +11,8 @@ The following files are included:
 Javascript/Coffescript
 ----------------------
 - clipmarklet-browser.js - the code that runs in the browser and remotely calls the clipmarklet-initialize coffeescript
-- clipmarklet-initialize.js.coffee.erb -> the code that generates the bookmarklet html and styles it
-- clipmarklet.js.coffee -> the script that establishes some utility methods to call on clipmarklet related pages
+- clipmarklet-initialize.js.coffee.erb - the code that generates the bookmarklet html and styles it
+- clipmarklet.js.coffee - the script that establishes some utility methods to call on clipmarklet related pages
 
 Controllers
 -----------
@@ -31,13 +31,13 @@ Listed here is a portion of the code from the an analytics project I worked on w
 
 The following files are included:
 
-- Model -> analytics.rb
-- View -> index.html.erb
-- Controller -> analytics_controler.rb
-- [Cron] Rake task** -> analytics.rake
-- Migration -> 20110922184849_create_analytics_rb
-- Service Wrapper for Analytics*** -> analytics_service.rb
-- Garb Model**** -> visitors_grouped.rb
+- Model - analytics.rb
+- View - index.html.erb
+- Controller - analytics_controler.rb
+- [Cron] Rake task** - analytics.rake
+- Migration - 20110922184849_create_analytics_rb
+- Service Wrapper for Analytics*** - analytics_service.rb
+- Garb Model**** - visitors_grouped.rb
 
 ** - This is the task that gets run on cron to gather all page analytics info.
 
