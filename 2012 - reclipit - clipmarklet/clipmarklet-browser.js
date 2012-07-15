@@ -1,1 +1,0 @@
-javascript:(function()%7B_r=document.createElement('script');_r.setAttribute('type','text/javascript');_r.setAttribute('src','http://assets.reclipit.com/assets/clipmarklet-initialize.js?r='+Math.random()*99999999);document.body.appendChild(_r);%7D)();
