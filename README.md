@@ -1,7 +1,7 @@
 # Sample Code
 In this project I have consolodated some sample code for various projects I have worked on in the past. I only uploaded the code I worked on so there are obviously some missing sections.
 
-## ReclipIt 2012 - Bookmarklet
+## 2012- ReclipIt - Bookmarklet
 Listed here is a portion of the code from the Bookmarklet (clipmarklet) project I worked on while at Citypockets.
 
 The following files are included:
@@ -20,7 +20,7 @@ The following files are included:
 - error.html.haml - for when there is an error retreiving an existing clip
 - new.html.haml - the add a new clip view but within a popup window
 
-##Onepager 2011 - Analytics
+##2011 - Onepager - Analytics
 Listed here is a portion of the code from the an analytics project I worked on while at Onepager.
 
 The following files are included:
