@@ -1,0 +1,120 @@
+class ClipmarkletInitialize
+  constructor: (body, head) ->
+    @root = jQuery(body)
+    @root.append('
+      <div id="clipmarklet">
+        <div class="content">
+          Would you like to clip a deal from
+          <input type="text" disabled="disabled" value="' + document.URL.replace('http://', '') + '" />
+          to a folder on Reclip.It?
+          <a id="yes" href="#!"></a>
+          <a class="close" id="cancel-button" href="#!">Cancel</a>
+        </div>
+        <a id="x-button" class="close" href="#!">X</a>
+      </div>
+    ')
+    @closeButtons = @root.find('.close')
+    @clipmarklet = @root.find('#clipmarklet')
+    @yesButton = @root.find('#yes')
+    @xButton = @root.find('#x-button')
+    @cancelButton = @root.find('#cancel-button')
+    @content = @root.find('.content')
+    @input = @root.find('input')
+    @setCss()
+    @closeButtons.click(@close)
+    @yesButton.click(@openPopup)
+    @clipmarklet.fadeIn()
+    @domain = '<%= Rails.env == "development" ? "reclip-it.dev" : "reclipit.com" %>'
+  
+  openPopup: (e) =>
+    window.open('http://'+@domain+'/clipmarklets/new?url=' + encodeURIComponent(document.URL) + '&clipmarklet=true','mywindow', 'menubar=1,resizable=0,width=700,height=580')
+    @removeClipmarklet()
+  
+  close: (e) =>
+    e.preventDefault()
+    @removeClipmarklet()
+    
+  removeClipmarklet: =>
+    @clipmarklet.remove()
+  
+  setCss: ->
+    @clipmarklet.css(
+      'background-color': '#DCCBC2'
+      'background-image': 'url("<%= asset_path('logo.png') %>")'
+      'background-position': 'center top'
+      'background-repeat': 'no-repeat'
+      color: 'white'
+      position: 'fixed'
+      right: 0
+      top: 0
+      padding: '10px'
+      display: 'none'
+      width: '400px'
+      '-webkit-border-radius': '5px'
+      '-moz-border-radius': '5px'
+      'border-radius': '5px'
+      'border': '5px solid #E8E8E8'
+      'z-index': 9999999
+    )
+    @content.css(
+      margin: '128px 0 0 0'
+      'text-align': 'center'
+      color: '#666'
+      font: 'normal bold 14px Helvetica, Arial, sans-serif'
+    )
+    @input.css(
+      display: 'block'
+      margin: '10px auto'
+      '-webkit-border-radius': '5px'
+      '-moz-border-radius': '5px'
+      'border-radius': '5px'
+      'border': '1px solid #8F8F8F'
+      width: '386px'
+      padding: '5px'
+      'text-align': 'center'
+    )
+    @cancelButton.css(
+      color: '#000'
+      margin: '10px 180px 0'
+      'font-size': '12px'
+      'display': 'block'
+      'font-weight': 'normal'
+      'text-decoration': 'underline'
+    )
+    @xButton.css(
+      position: 'absolute'
+      top: '10px'
+      right: '10px'
+      'text-decoration': 'none'
+      color: '#fff'
+    )
+    @yesButton.css(
+      background: 'url("<%= asset_path('clipmarklet/yes-button.png') %>") no-repeat left top'
+      width: 136
+      height: 33
+      display: 'block'
+      margin: '10px 130px 0'
+    )
+
+(->
+  # the minimum version of jQuery we want
+  version = "1.7.1"
+  
+  initMyBookmarklet = ->
+    (window.myBookmarklet = ->
+      new ClipmarkletInitialize(jQuery('body'), jQuery('head'))
+    )()
+  
+  # check prior inclusion and version
+  if window.jQuery == undefined || window.jQuery.fn.jquery < version
+    done = false
+    script = document.createElement("script")
+    script.src = "http://ajax.googleapis.com/ajax/libs/jquery/"+version+"/jquery.min.js"
+    script.onload = script.onreadystatechange = ->
+      if !done && (!this.readyState || this.readyState == "loaded" || this.readyState == "complete")
+        done = true
+        initMyBookmarklet()
+    document.getElementsByTagName("head")[0].appendChild(script)
+  else
+    initMyBookmarklet()
+)()

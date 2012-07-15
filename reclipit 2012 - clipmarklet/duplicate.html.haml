@@ -1,0 +1,11 @@
+#popup-select-clip.popup.duplicate.clipmarklet-popup{:"data-page-type" => 'duplicate'}
+  .heading
+    %h2 Add a Clip
+  .inner
+    %p
+      Looks like this deal already exists in our system. Would you still like to clip?
+    %ul.clip-picker
+      %li
+        %a{:href => new_clipmarklet_path(:url => @url, :force=>true, :clipmarklet => @clipmarklet)} Yes
+      %li
+        %a.close{:href => 'javascript:window.close()'} No

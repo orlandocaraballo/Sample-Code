@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %title= content_for?(:title) ? yield(:title) : "Discover and Share Online Deals with Friends | ReclipIt"
+    = content_for?(:meta_headers) ? yield(:meta_headers) : render("shared/meta_headers")
+    = csrf_meta_tags
+    = javascript_include_tag 'application-clipmarklet'
+    = stylesheet_link_tag 'application-clipmarklet'
+    = render "shared/header_js"
+    = render "shared/analytics_js"
+  %body
+    = yield

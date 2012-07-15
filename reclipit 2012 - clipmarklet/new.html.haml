@@ -1,0 +1,3 @@
+= render 'clips/new_clip_form', :my_folders => current_user.my_folders, :followed_folders => current_user.open_folders_addable.alphabetize, :clipmarklet => @clipmarklet, :clip => @clip
+:javascript
+  new NewClipForm($('#popup-new-clip'), #{raw @clip.deal.parsed_images.to_json});
