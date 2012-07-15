@@ -1,32 +1,26 @@
-Sample Code
-===========
+# Sample Code
 In this project I have consolodated some sample code for various projects I have worked on in the past. I only uploaded the code I worked on so there are obviously some missing sections.
 
-ReclipIt 2012 - Bookmarklet
-===========================
+## ReclipIt 2012 - Bookmarklet
 Listed here is a portion of the code from the Bookmarklet (clipmarklet) project I worked on while at Citypockets.
 
 The following files are included:
 
-Javascript/Coffescript
-----------------------
+### Javascript/Coffescript
 - clipmarklet-browser.js - the code that runs in the browser and remotely calls the clipmarklet-initialize coffeescript
 - clipmarklet-initialize.js.coffee.erb - the code that generates the bookmarklet html and styles it
 - clipmarklet.js.coffee - the script that establishes some utility methods to call on clipmarklet related pages
 
-Controllers
------------
+### Controllers
 - clipmarklets_controller.rb
 
-Views
------
+### Views
 - clipmarklet.html.haml - bookmarklet layout
 - duplicate.html.haml - for when clips already exist in the system
 - error.html.haml - for when there is an error retreiving an existing clip
 - new.html.haml - the add a new clip view but within a popup window
 
-Onepager 2011 - Analytics
-=========================
+##Onepager 2011 - Analytics
 Listed here is a portion of the code from the an analytics project I worked on while at Onepager.
 
 The following files are included:
