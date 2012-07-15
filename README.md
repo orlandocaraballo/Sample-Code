@@ -1,8 +1,12 @@
 # Sample Code
 In this project I have consolodated some sample code for various projects I have worked on in the past. I only uploaded the code I worked on so there are obviously some missing sections.
 
+## 2012- ReclipIt - ImageCleaner
+This project began as a simple fix but became more complex once I realized the nature of the problem. The code in clips.js.coffee is an exerpt that isolates the portion of code that grabs the images from a "clipped" (refer to bookmarklet) website and allows you to choose a image to associated with that "clip" in the ReclipIt system. The problem here was parsing out images of a certain height/width all in javascript/coffeescript. The code dynamically loads an array of images, using their respective url's, and cleverly calculates their width and height then renders the parsed images onto the page. It accounts for possible 404/403 errors, forces the images to render within 3 minutes and does this asynchronously (there is a loading gif that display in the meantime). You can see it in action if you click on the clipit button (heart+ button upper right) [here](http://reclipit.com/).
+
+
 ## 2012- ReclipIt - Bookmarklet
-Listed here is a portion of the code from the Bookmarklet (clipmarklet) project I worked on while at Citypockets.
+Listed here is a portion of the code from the Bookmarklet (clipmarklet) project I worked on while at Citypockets. You can test out the bookmarklet (clip it button) [here](http://reclipit.com/about/clip-it-button).
 
 The following files are included:
 
@@ -21,7 +25,7 @@ The following files are included:
 - new.html.haml - the add a new clip view but within a popup window
 
 ##2011 - Onepager - Analytics
-Listed here is a portion of the code from the an analytics project I worked on while at Onepager.
+Listed here is a portion of the code from the an analytics project I worked on while at Onepager. You see the analytics frontend in action if you are a premium user on [Onepager](http://onepagerapp.com).
 
 The following files are included:
 
