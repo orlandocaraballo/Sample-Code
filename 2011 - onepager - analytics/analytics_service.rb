@@ -21,6 +21,7 @@ class AnalyticsService
       @address = { :hostname.eql => user.domain_name }
     end
     
+    # set initial data used across private methods
     @sort = :visits.desc
     @limit = 10
     @end_date = Date.yesterday
@@ -61,11 +62,16 @@ class AnalyticsService
     return var_hash
   end
   
-private  
+private
+  # returns a page's visitors count from start_date thru yesterday
   def self.visitors(start_date)
-    @@profile.visitors(:filters => @address, :start_date => start_date).to_a[0]
+    @@profile.visitors(
+      :filters => @address,
+      :start_date => start_date,
+      :end_date => @end_date).to_a[0]
   end
   
+  # returns all page visits from start_date thru yesterday, grouped by date 
   def self.visitors_grouped(start_date)
     visitors_grouped = []
     @@profile.visitors_grouped(
@@ -77,6 +83,7 @@ private
     return visitors_grouped
   end
   
+  # returns all keywords used to reach a page
   def self.keywords(start_date)
     keywords = []
     @@profile.keywords(
@@ -90,6 +97,7 @@ private
     return keywords
   end
   
+  # returns all sources used to reach a page (google, bing, inbound link)
   def self.sources(start_date)
     sources = []
     @@profile.sources(

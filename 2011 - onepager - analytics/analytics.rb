@@ -12,8 +12,9 @@ class Analytics < ActiveRecord::Base
     time_travel = time_travel == :month ? :month : :week
     a_week_ago = 1.week.ago
     a_month_ago = 1.month.ago
-    
+
     # setup initial deep dive month and week defaults (dummy data according to day of week)
+    # each deep dive attribute stores the list of grouped visits information grouped by week or month in a serialized array
     if time_travel == :month
       deep_dive = Array.new(30) do |i|
         current_date = a_month_ago + i.day
@@ -26,6 +27,7 @@ class Analytics < ActiveRecord::Base
       end
     end
      
+     # creates new analytics object with default values filled in
     Analytics.new(
       :total_views => 0,
       :avg_time_on_site => 0,
