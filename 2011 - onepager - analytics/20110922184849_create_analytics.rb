@@ -9,6 +9,7 @@ class CreateAnalytics < ActiveRecord::Migration
       t.text :keywords
       t.text :sources
       t.string :time_travel
+      t.index :time_travel
       t.timestamps
     end
   end

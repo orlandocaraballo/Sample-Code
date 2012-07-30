@@ -5,7 +5,9 @@ class Analytics < ActiveRecord::Base
   serialize :deep_dive, Array
   serialize :keywords, Array
   serialize :sources, Array
+  scope :data, lambda { |theme_id, time_travel| where(:theme_id => theme_id, :time_travel => time_travel).first }
 
+  # sets default values for brand new rows
   def self.default(time_travel)
     time_travel = time_travel == :month ? :month : :week
     a_week_ago = 1.week.ago
@@ -33,9 +35,5 @@ class Analytics < ActiveRecord::Base
       :sources => [],
       :time_travel => time_travel,
     )
-  end
-
-  def self.data(theme_id, time_travel)
-    Analytics.where(:theme_id => theme_id, :time_travel => time_travel).first
   end
 end
